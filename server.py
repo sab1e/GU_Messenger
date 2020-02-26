@@ -10,6 +10,8 @@ from common.utils import recv_message, send_message
 
 
 def handler_client_message(message):
+    """Функция обрабатывает корректность сообщения клиента и
+    возвращает ответ"""
     if ACTION in message and message[ACTION] == PRESENCE and TIME in message \
             and USER in message and message[USER][ACCOUNT_NAME] == 'Guest':
         return {RESPONSE: 200}
@@ -20,15 +22,16 @@ def handler_client_message(message):
 
 
 def main():
+    """Запуск приложения"""
     try:
         parser = argparse.ArgumentParser(description='messenger server app')
-        parser.add_argument('-p', '--port', type=int, default=DEFAULT_PORT,
-                            help='Введите номер порта для соединения')
-        parser.add_argument('-a', '--address', type=str, default='',
-                            help='Введите адрес для соединения')
+        parser.add_argument('-p', dest='port', type=int, default=DEFAULT_PORT,
+                            help='Номер порта для соединения')
+        parser.add_argument('-a', dest='ip', type=str, default='',
+                            help='Адрес для соединения')
         args = parser.parse_args()
         listen_port = args.port
-        listen_address = args.address
+        listen_address = args.ip
         if listen_port < 1024 or listen_port > 65535:
             raise ValueError
 
@@ -51,7 +54,7 @@ def main():
             send_message(client, response)
             client.close()
         except (ValueError, json.JSONDecodeError):
-            print(f'Сообщение от {client} некорректное')
+            print(f'Сообщение от пользователя некорректно')
             client.close()
 
 

@@ -5,12 +5,7 @@ from common.settings import MAX_PACKAGE_LENGTH, ENCODING
 
 
 def recv_message(client):
-    """
-    Утилита приема и декодирования сообщения
-    :param client:
-    :return:
-    """
-
+    """Функция приема и декодирования сообщения"""
     encoded_response = client.recv(MAX_PACKAGE_LENGTH)
     if isinstance(encoded_response, bytes):
         json_response = encoded_response.decode(ENCODING)
@@ -22,12 +17,7 @@ def recv_message(client):
 
 
 def send_message(sock, message):
-    """
-    Утилита кодирования и отправки сообщения
-    :param sock:
-    :param message:
-    :return:
-    """
+    """Функция кодирования и отправки сообщения"""
     json_message = json.dumps(message)
     encoded_message = json_message.encode(ENCODING)
     sock.send(encoded_message)
