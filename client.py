@@ -10,11 +10,13 @@ from common.settings import ACTION, PRESENCE, TIME, USER, ACCOUNT_NAME,\
     RESPONSE, ERROR, DEFAULT_IP_ADDRESS, DEFAULT_PORT
 from common.utils import recv_message, send_message
 from log import client_log_config
+from decos import log
 
 
 CLIENT_LOGGER = logging.getLogger('app.client')
 
 
+@log
 def create_presense(account_name='Guest'):
     """Функция генерирует сервисное сообщение о присутствии клиента"""
 
@@ -32,6 +34,7 @@ def create_presense(account_name='Guest'):
     return presence_msg
 
 
+@log
 def handler_server_ans(message):
     """Функция обрабатывает ответ от сервера"""
     CLIENT_LOGGER.debug(f'Обработка сообщения от сервера: {message}')

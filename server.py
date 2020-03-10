@@ -9,10 +9,13 @@ import log.server_log_config
 from common.settings import ACTION, ACCOUNT_NAME, RESPONSE, \
     MAX_CONNECTIONS, PRESENCE, TIME, USER, ERROR, DEFAULT_PORT
 from common.utils import recv_message, send_message
+from decos import log
+
 
 SERVER_LOGGER = logging.getLogger('app.server')
 
 
+@log
 def handler_client_message(message):
     """Функция обрабатывает корректность сообщения клиента и
     возвращает ответ"""
