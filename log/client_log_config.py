@@ -20,7 +20,7 @@ STREAM_HANDLER.setLevel(logging.ERROR)
 FILE_HANDLER = logging.FileHandler(PATH, encoding='utf-8')
 FILE_HANDLER.setFormatter(CLIENT_FORMATTER)
 
-LOGGER = logging.getLogger('app.client')
+LOGGER = logging.getLogger('client')
 LOGGER.addHandler(STREAM_HANDLER)
 LOGGER.addHandler(FILE_HANDLER)
 LOGGER.setLevel(LOGGING_LEVEL)

@@ -22,7 +22,7 @@ FILE_HANDLER = logging.handlers.TimedRotatingFileHandler(PATH, interval=1,
                                                          encoding='utf-8')
 FILE_HANDLER.setFormatter(SERVER_FORMATTER)
 
-LOGGER = logging.getLogger('app.server')
+LOGGER = logging.getLogger('server')
 LOGGER.addHandler(STREAM_HANDLER)
 LOGGER.addHandler(FILE_HANDLER)
 LOGGER.setLevel(LOGGING_LEVEL)

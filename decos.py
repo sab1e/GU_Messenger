@@ -9,9 +9,9 @@ import log.server_log_config
 
 
 if sys.argv[0].find('client') == -1:
-    LOGGER = logging.getLogger('app.client')
+    LOGGER = logging.getLogger('server')
 else:
-    LOGGER = logging.getLogger('app.server')
+    LOGGER = logging.getLogger('client')
 
 
 def log(func_for_log):
@@ -23,6 +23,7 @@ def log(func_for_log):
                      f'{args}, {kwargs}. Вызов из модуля '
                      f'{func_for_log.__module__}. Вызов из функции '
                      f'{traceback.format_stack()[0].strip().split()[-1]}. '
-                     f'Вызов из функции {inspect.stack()[1][3]}')
+                     # f'Вызов из функции {inspect.stack()[1][3]}'
+        )
         return res
     return log_create
